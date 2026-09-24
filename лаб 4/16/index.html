@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа — Интернет-магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Оформление заказа</h1>
+
+        <form id="orderForm" novalidate>
+
+            <!-- ============ БЛОК 1: КОНТАКТНЫЕ ДАННЫЕ ============ -->
+            <fieldset class="form-section">
+                <legend>1. Контактные данные</legend>
+
+                <div class="form-group">
+                    <label for="fullname">ФИО *</label>
+                    <input
+                        id="fullname"
+                        type="text"
+                        placeholder="Иванов Иван Иванович"
+                        autocomplete="name">
+                    <span class="error" data-error-for="fullname"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="user@example.com"
+                        autocomplete="email">
+                    <span class="error" data-error-for="email"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Телефон *</label>
+                    <input
+                        id="phone"
+                        type="tel"
+                        placeholder="+7 (999) 123-45-67"
+                        autocomplete="tel">
+                    <span class="error" data-error-for="phone"></span>
+                </div>
+            </fieldset>
+
+            <!-- ============ БЛОК 2: ДОСТАВКА ============ -->
+            <fieldset class="form-section">
+                <legend>2. Доставка</legend>
+
+                <div class="form-group">
+                    <label for="city">Город *</label>
+                    <input
+                        id="city"
+                        type="text"
+                        placeholder="Москва"
+                        autocomplete="address-level2">
+                    <span class="error" data-error-for="city"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Адрес *</label>
+                    <input
+                        id="address"
+                        type="text"
+                        placeholder="ул. Ленина, д. 1, кв. 1"
+                        autocomplete="street-address">
+                    <span class="error" data-error-for="address"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="delivery">Способ доставки *</label>
+                    <select id="delivery">
+                        <option value="">Выберите способ доставки</option>
+                        <option value="courier">Курьером</option>
+                        <option value="pickup">Самовывоз</option>
+                        <option value="post">Почтой</option>
+                    </select>
+                    <span class="error" data-error-for="delivery"></span>
+                </div>
+            </fieldset>
+
+            <!-- ============ БЛОК 3: ОПЛАТА ============ -->
+            <fieldset class="form-section">
+                <legend>3. Оплата</legend>
+
+                <div class="form-group">
+                    <label>Способ оплаты *</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="payment" value="card"> Картой онлайн</label>
+                        <label><input type="radio" name="payment" value="cash"> Наличными при получении</label>
+                        <label><input type="radio" name="payment" value="sbp"> СБП</label>
+                    </div>
+                    <span class="error" data-error-for="payment"></span>
+                </div>
+
+                <div class="form-group" id="cardFields" hidden>
+                    <label for="card">Номер карты *</label>
+                    <input
+                        id="card"
+                        type="text"
+                        placeholder="1234 5678 9012 3456"
+                        inputmode="numeric"
+                        maxlength="19">
+                    <span class="error" data-error-for="card"></span>
+                </div>
+            </fieldset>
+
+            <!-- ============ БЛОК 4: СОГЛАСИЯ ============ -->
+            <fieldset class="form-section">
+                <legend>4. Согласия</legend>
+
+                <div class="form-group">
+                    <label class="checkbox-line">
+                        <input id="agreeTerms" type="checkbox">
+                        Согласен с условиями оферты *
+                    </label>
+                    <span class="error" data-error-for="agreeTerms"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-line">
+                        <input id="agreeData" type="checkbox">
+                        Согласен на обработку персональных данных *
+                    </label>
+                    <span class="error" data-error-for="agreeData"></span>
+                </div>
+            </fieldset>
+
+            <button type="submit">Оформить заказ</button>
+        </form>
+
+        <!-- Общее сообщение (успех / общая ошибка) -->
+        <p id="message" class="message"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
