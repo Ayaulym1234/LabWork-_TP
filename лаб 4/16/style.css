@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 20px;
+}
+
+.container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 30px 40px;
+    max-width: 620px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+/* Блоки формы */
+.form-section {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px 18px 8px;
+    margin-bottom: 18px;
+}
+
+.form-section legend {
+    font-weight: 700;
+    color: #e67e22;
+    padding: 0 8px;
+    font-size: 15px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group > label {
+    display: block;
+    margin-bottom: 6px;
+    color: #444;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #fda085;
+    box-shadow: 0 0 0 3px rgba(253, 160, 133, 0.25);
+}
+
+/* Радиокнопки и чекбоксы */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.radio-group label,
+.checkbox-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.radio-group input,
+.checkbox-line input {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+
+/* Сообщения об ошибках под полями */
+.error {
+    display: block;
+    color: #c0392b;
+    font-size: 12.5px;
+    margin-top: 4px;
+    min-height: 14px;
+}
+
+/* Подсветка невалидных полей */
+.invalid {
+    border-color: #c0392b !important;
+    background: #fff6f5;
+}
+
+/* Кнопка */
+button[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    color: #4a2c12;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s;
+    margin-top: 6px;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(230, 126, 34, 0.35);
+}
+
+/* Общее сообщение */
+.message {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 6px;
+    white-space: pre-line;
+    min-height: 20px;
+}
+
+.message.error {
+    color: #c0392b;
+    background: #fdecea;
+    border: 1px solid #f5c6cb;
+}
+
+.message.success {
+    color: #1e8449;
+    background: #eafaf1;
+    border: 1px solid #a9dfbf;
+}

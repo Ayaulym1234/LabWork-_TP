@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация студента</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Регистрация студента</h1>
+        
+        <form id="studentForm" novalidate>
+            <div class="form-group">
+                <label for="fullname">ФИО *</label>
+                <input 
+                    id="fullname" 
+                    type="text" 
+                    placeholder="Иванов Иван Иванович"
+                    autocomplete="name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail *</label>
+                <input 
+                    id="email" 
+                    type="email" 
+                    placeholder="student@example.com"
+                    autocomplete="email">
+            </div>
+
+            <div class="form-group">
+                <label for="course">Курс *</label>
+                <select id="course">
+                    <option value="">Выберите курс</option>
+                    <option value="1">1 курс</option>
+                    <option value="2">2 курс</option>
+                    <option value="3">3 курс</option>
+                    <option value="4">4 курс</option>
+                </select>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <label>
+                    <input id="agree" type="checkbox">
+                    Согласен с правилами *
+                </label>
+            </div>
+
+            <button type="submit">Отправить</button>
+        </form>
+
+        <p id="message" class="message"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

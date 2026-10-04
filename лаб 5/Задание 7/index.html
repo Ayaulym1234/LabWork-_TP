@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Конвертер температуры</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 420px;
+        }
+        h1 { text-align: center; color: #333; margin-top: 0; }
+        label { display: block; margin: 12px 0 6px; color: #555; font-weight: bold; }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4a63e7;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4a63e7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: background 0.2s;
+        }
+        button:hover { background: #3849b8; }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #eee;
+            text-align: center;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        #result.success { background: #d4edda; color: #155724; }
+        #result.error   { background: #f8d7da; color: #721c24; }
+        .value { font-weight: bold; color: #4a63e7; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌡️ Конвертер температуры</h1>
+
+        <label for="tempInput">Температура:</label>
+        <input type="number" id="tempInput" placeholder="Например, 25" step="any">
+
+        <label for="fromUnit">Из единицы:</label>
+        <select id="fromUnit">
+            <option value="celsius">Цельсий (°C)</option>
+            <option value="fahrenheit">Фаренгейт (°F)</option>
+            <option value="kelvin">Кельвин (K)</option>
+        </select>
+
+        <button id="convertBtn">Конвертировать</button>
+
+        <div id="result">Введите значение и нажмите «Конвертировать»</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
