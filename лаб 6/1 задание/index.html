@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список покупок</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 460px;
+        }
+        h1 { text-align: center; color: #333; margin-top: 0; }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        #itemInput {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        #itemInput:focus { outline: none; border-color: #4a63e7; }
+
+        #addBtn {
+            padding: 12px 20px;
+            background: #4a63e7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #addBtn:hover { background: #3849b8; }
+
+        #taskList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #taskList li {
+            background: #f7f8fc;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s, transform 0.1s;
+            border-left: 4px solid #4a63e7;
+        }
+        #taskList li:hover {
+            background: #eef0fb;
+            transform: translateX(4px);
+        }
+        #taskList li.done {
+            background: #e8f5e9;
+            border-left-color: #27ae60;
+            text-decoration: line-through;
+            color: #888;
+        }
+        #taskList li.done::after {
+            content: '✔';
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .empty {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+        }
+        #counter {
+            text-align: center;
+            margin-top: 16px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Список покупок</h1>
+
+        <div class="input-row">
+            <input type="text" id="itemInput" placeholder="Например, Молоко">
+            <button id="addBtn">Добавить</button>
+        </div>
+
+        <ul id="taskList"></ul>
+        <div id="counter">Покупок: 0</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

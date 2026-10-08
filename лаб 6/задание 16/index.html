@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Kanban-доска</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-top: 0;
+        }
+
+        .input-row {
+            max-width: 1100px;
+            margin: 0 auto 24px;
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        #taskInput {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        #taskInput:focus { outline: none; border-color: #4ca1af; }
+
+        #addBtn {
+            padding: 12px 24px;
+            background: #4ca1af;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #addBtn:hover { background: #3a8a96; }
+
+        .board {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .column {
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 16px;
+            min-height: 400px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+        }
+        .column h2 {
+            margin: 0 0 12px;
+            font-size: 18px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        .column[data-status="new"] h2    { color: #3498db; }
+        .column[data-status="work"] h2   { color: #e67e22; }
+        .column[data-status="done"] h2   { color: #27ae60; }
+
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .column-count {
+            background: #eee;
+            border-radius: 12px;
+            padding: 2px 10px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .tasks {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .card-text {
+            font-size: 15px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        .card-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .card-actions button {
+            flex: 1;
+            padding: 6px 8px;
+            font-size: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: white;
+            transition: opacity 0.2s;
+        }
+        .card-actions button:hover { opacity: 0.85; }
+
+        .btn-left   { background: #95a5a6; }
+        .btn-right  { background: #3498db; }
+        .btn-delete { background: #e74c3c; flex: 0 0 auto !important; padding: 6px 10px !important; }
+
+        .empty {
+            text-align: center;
+            color: #bbb;
+            font-style: italic;
+            padding: 16px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📋 Kanban-доска</h1>
+
+    <div class="input-row">
+        <input type="text" id="taskInput" placeholder="Введите новую задачу...">
+        <button id="addBtn">Добавить</button>
+    </div>
+
+    <div class="board">
+        <div class="column" data-status="new">
+            <div class="column-header">
+                <h2>🆕 Новые</h2>
+                <span class="column-count" id="count-new">0</span>
+            </div>
+            <div class="tasks" id="col-new"></div>
+        </div>
+
+        <div class="column" data-status="work">
+            <div class="column-header">
+                <h2>⚙️ В работе</h2>
+                <span class="column-count" id="count-work">0</span>
+            </div>
+            <div class="tasks" id="col-work"></div>
+        </div>
+
+        <div class="column" data-status="done">
+            <div class="column-header">
+                <h2>✅ Готово</h2>
+                <span class="column-count" id="count-done">0</span>
+            </div>
+            <div class="tasks" id="col-done"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
