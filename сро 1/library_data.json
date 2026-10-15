@@ -1,0 +1,58 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Преступление и наказание",
+      "author": "Ф. Достоевский",
+      "genre": "Роман",
+      "year": 1866,
+      "total_copies": 3,
+      "available_copies": 3
+    },
+    {
+      "id": 2,
+      "title": "Мастер и Маргарита",
+      "author": "М. Булгаков",
+      "genre": "Роман",
+      "year": 1967,
+      "total_copies": 2,
+      "available_copies": 2
+    },
+    {
+      "id": 3,
+      "title": "1984",
+      "author": "Дж. Оруэлл",
+      "genre": "Антиутопия",
+      "year": 1949,
+      "total_copies": 1,
+      "available_copies": 0
+    },
+    {
+      "id": 4,
+      "title": "Мертвые души",
+      "author": "Н.Гоголь",
+      "genre": "поэма",
+      "year": 1842,
+      "total_copies": 3,
+      "available_copies": 3
+    },
+    {
+      "id": 5,
+      "title": "Король в желтом",
+      "author": "Р.Чемберс",
+      "genre": "хоррор",
+      "year": 1895,
+      "total_copies": 3,
+      "available_copies": 3
+    }
+  ],
+  "loans": [
+    {
+      "book_id": 3,
+      "username": "reader1",
+      "date_taken": "2026-10-15 11:38"
+    }
+  ],
+  "users": {},
+  "next_id": 6
+}
