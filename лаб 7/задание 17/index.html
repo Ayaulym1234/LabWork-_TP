@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование аудиторий — SPA</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 16px;
+            color: #333;
+        }
+
+        .app {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            width: 100%;
+            max-width: 960px;
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a63e7, #764ba2);
+            color: white;
+            padding: 26px 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        header .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            border: 3px solid rgba(255,255,255,0.5);
+        }
+        header h1 { margin: 0 0 4px; font-size: 22px; }
+        header p  { margin: 0; opacity: 0.85; font-size: 14px; }
+        header .badge {
+            margin-left: auto;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            background: #fafbff;
+        }
+        nav button {
+            flex: 1;
+            padding: 16px 10px;
+            border: none;
+            background: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: #777;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s, background 0.2s;
+        }
+        nav button:hover { background: #f0f2fb; color: #4a63e7; }
+        nav button.active { color: #4a63e7; }
+        nav button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; right: 0;
+            height: 3px;
+            background: #4a63e7;
+            border-radius: 3px 3px 0 0;
+        }
+
+        main {
+            padding: 24px;
+            min-height: 400px;
+        }
+
+        .fade-in { animation: fadeIn 0.35s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .room {
+            background: #f9fafd;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 16px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .room:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .room .room-icon { font-size: 30px; margin-bottom: 6px; }
+        .room h3 { margin: 0 0 6px; font-size: 17px; color: #333; }
+        .room .meta {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .room .chip {
+            font-size: 11px;
+            padding: 3px 9px;
+            border-radius: 12px;
+            background: #eef0fb;
+            color: #4a63e7;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .booking-form {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #ddd;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .booking-form input {
+            padding: 8px 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .booking-form input:focus {
+            outline: none;
+            border-color: #4a63e7;
+        }
+        .booking-form button {
+            grid-column: 1 / -1;
+            padding: 10px;
+            background: #4a63e7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .booking-form button:hover { background: #3849b8; }
+
+        .booking-list { display: flex; flex-direction: column; gap: 10px; }
+        .booking-item {
+            background: #f9fafd;
+            border-left: 4px solid #4a63e7;
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .booking-item .icon { font-size: 24px; }
+        .booking-item .info { flex: 1; min-width: 200px; }
+        .booking-item .info h4 { margin: 0 0 4px; font-size: 15px; }
+        .booking-item .info span { font-size: 13px; color: #666; }
+        .booking-item .time {
+            background: #eef0fb;
+            color: #4a63e7;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .booking-item button {
+            padding: 6px 12px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .booking-item button:hover { background: #c0392b; }
+
+        .empty {
+            text-align: center;
+            color: #999;
+            padding: 60px 20px;
+            font-size: 16px;
+        }
+        .empty .icon {
+            font-size: 52px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .toast {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-80px);
+            background: #333;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        .toast.success { background: #27ae60; }
+        .toast.error   { background: #e74c3c; }
+
+        .rules h2 { margin-top: 0; color: #333; }
+        .rules ol { line-height: 1.9; color: #444; padding-left: 22px; }
+        .rules li { margin-bottom: 8px; }
+        .rules .note {
+            background: #fff4e5;
+            border-left: 4px solid #c47c16;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+            color: #7a4f00;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 14px;
+            font-size: 12px;
+            color: #aaa;
+            background: #fafbff;
+            border-top: 1px solid #eee;
+        }
+
+        /* ⭐ Подсветка клавиатурного фокуса */
+        nav button:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        a:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid #ff9800;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+        button:focus:not(:focus-visible) { outline: none; }
+
+        /* Подсказка по горячим клавишам */
+        .hotkeys-hint {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 8px 16px;
+            background: #fafbff;
+            border-bottom: 1px solid #eee;
+        }
+        .hotkeys-hint kbd {
+            background: #eef0fb;
+            color: #4a63e7;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid #d6dbf5;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <div class="logo">🏛️</div>
+            <div>
+                <h1>Бронирование аудиторий</h1>
+                <p>Университетская система</p>
+            </div>
+            <div class="badge" id="bookBadge">📅 0</div>
+        </header>
+
+        <nav id="tabs">
+            <button data-page="rooms">Аудитории</button>
+            <button data-page="bookings">Бронирования</button>
+            <button data-page="rules">Правила</button>
+        </nav>
+
+        <div class="hotkeys-hint">
+            <kbd>←</kbd> <kbd>→</kbd> вкладки &nbsp;•&nbsp;
+            <kbd>Alt+1..3</kbd> быстрый переход &nbsp;•&nbsp;
+            <kbd>/</kbd> к форме &nbsp;•&nbsp;
+            <kbd>Esc</kbd> снять фокус
+        </div>
+
+        <main id="content" aria-live="polite"></main>
+
+        <footer>© 2026 Университет · SPA на чистом JavaScript</footer>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="app.js" defer></script>
+</body>
+</html>

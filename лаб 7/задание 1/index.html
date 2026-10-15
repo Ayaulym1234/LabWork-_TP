@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Визитка студента — SPA</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 16px;
+            color: #333;
+        }
+
+        .app {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            width: 100%;
+            max-width: 720px;
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a63e7, #764ba2);
+            color: white;
+            padding: 28px 24px 20px;
+            text-align: center;
+        }
+        header .avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            margin: 0 auto 12px;
+            border: 3px solid rgba(255,255,255,0.5);
+        }
+        header h1 { margin: 0 0 4px; font-size: 22px; }
+        header p  { margin: 0; opacity: 0.85; font-size: 14px; }
+
+        nav {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            background: #fafbff;
+        }
+        nav button {
+            flex: 1;
+            padding: 16px 10px;
+            border: none;
+            background: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: #777;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s, background 0.2s;
+        }
+        nav button:hover { background: #f0f2fb; color: #4a63e7; }
+        nav button.active { color: #4a63e7; }
+        nav button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; right: 0;
+            height: 3px;
+            background: #4a63e7;
+            border-radius: 3px 3px 0 0;
+        }
+
+        main {
+            padding: 28px 24px;
+            min-height: 320px;
+        }
+
+        .fade-in { animation: fadeIn 0.35s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .about p { line-height: 1.7; color: #444; margin: 0 0 12px; }
+        .about .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+        .about .info-card {
+            background: #f7f8fc;
+            padding: 14px;
+            border-radius: 10px;
+            border-left: 4px solid #4a63e7;
+        }
+        .about .info-card b {
+            display: block;
+            color: #4a63e7;
+            font-size: 13px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .about .info-card span { color: #333; font-size: 15px; }
+
+        .skills h2 { margin-top: 0; font-size: 18px; color: #333; }
+        .skill { margin-bottom: 16px; }
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+        }
+        .skill-bar {
+            background: #eee;
+            border-radius: 6px;
+            height: 10px;
+            overflow: hidden;
+        }
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4a63e7, #764ba2);
+            border-radius: 6px;
+            width: 0;
+            transition: width 0.6s ease;
+        }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+        .tag {
+            background: #eef0fb;
+            color: #4a63e7;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .contacts h2 { margin-top: 0; font-size: 18px; color: #333; }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #f7f8fc;
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.15s, background 0.2s;
+        }
+        .contact-item:hover { background: #eef0fb; transform: translateX(4px); }
+        .contact-icon { font-size: 22px; width: 34px; text-align: center; }
+        .contact-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .contact-value { font-size: 15px; font-weight: 600; color: #333; }
+
+        footer {
+            text-align: center;
+            padding: 14px;
+            font-size: 12px;
+            color: #aaa;
+            background: #fafbff;
+            border-top: 1px solid #eee;
+        }
+
+        /* ⭐ Подсветка клавиатурного фокуса */
+        nav button:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        a:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid #ff9800;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+        button:focus:not(:focus-visible) { outline: none; }
+
+        .hotkeys-hint {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 8px 16px;
+            background: #fafbff;
+            border-bottom: 1px solid #eee;
+        }
+        .hotkeys-hint kbd {
+            background: #eef0fb;
+            color: #4a63e7;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid #d6dbf5;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <div class="avatar">🎓</div>
+            <h1 id="studentName">Юнусхожаева Аяулым</h1>
+            <p id="studentGroup">Группа ИС 25-21 • 2 курс</p>
+        </header>
+
+        <nav id="tabs">
+            <button data-page="about">О себе</button>
+            <button data-page="skills">Навыки</button>
+            <button data-page="contacts">Контакты</button>
+        </nav>
+
+        <div class="hotkeys-hint">
+            <kbd>←</kbd> <kbd>→</kbd> вкладки &nbsp;•&nbsp;
+            <kbd>Alt+1..3</kbd> быстрый переход &nbsp;•&nbsp;
+            <kbd>Esc</kbd> снять фокус
+        </div>
+
+        <main id="content" aria-live="polite"></main>
+
+        <footer>© 2026 Визитка студента · SPA на чистом JavaScript</footer>
+    </div>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
