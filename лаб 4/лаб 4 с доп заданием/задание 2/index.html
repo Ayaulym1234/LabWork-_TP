@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация аккаунта</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 460px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+            font-size: 22px;
+        }
+        .field { margin-bottom: 16px; }
+        .label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+        label.field-label {
+            color: #444;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .counter {
+            font-size: 12px;
+            color: #888;
+            font-variant-numeric: tabular-nums;
+            transition: color 0.2s;
+        }
+        .counter.ok       { color: #27ae60; font-weight: bold; }
+        .counter.warning  { color: #f39c12; font-weight: bold; }
+        .counter.too-long { color: #e74c3c; font-weight: bold; }
+        .counter.too-short { color: #e74c3c; font-weight: bold; }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #43cea2;
+        }
+        input.invalid {
+            border-color: #e74c3c;
+            background: #fdecea;
+        }
+        input.valid {
+            border-color: #27ae60;
+            background: #f0f9f4;
+        }
+
+        /* Индикатор силы пароля */
+        .strength-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: #eee;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .strength-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 3px;
+            transition: width 0.3s, background 0.3s;
+        }
+        .strength-text {
+            font-size: 12px;
+            margin-top: 4px;
+            color: #888;
+        }
+
+        /* Сообщение о совпадении паролей */
+        .match-hint {
+            font-size: 12px;
+            margin-top: 4px;
+            min-height: 16px;
+        }
+        .match-hint.ok    { color: #27ae60; }
+        .match-hint.error { color: #e74c3c; }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #43cea2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 8px;
+        }
+        button:hover { background: #36a884; }
+
+        #message {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            min-height: 20px;
+            background: #eee;
+            color: #333;
+        }
+        #message.error   { background: #f8d7da; color: #721c24; }
+        #message.success { background: #d4edda; color: #155724; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Регистрация аккаунта</h1>
+
+        <form id="registerForm" novalidate>
+
+            <div class="field">
+                <div class="label-row">
+                    <label class="field-label" for="login">Логин *</label>
+                    <span class="counter" id="loginCounter">0 / 20</span>
+                </div>
+                <input type="text" id="login" placeholder="my_login" maxlength="20">
+            </div>
+
+            <div class="field">
+                <div class="label-row">
+                    <label class="field-label" for="email">E-mail *</label>
+                    <span class="counter" id="emailCounter">0 / 60</span>
+                </div>
+                <input type="email" id="email" placeholder="user@example.com" maxlength="60">
+            </div>
+
+            <div class="field">
+                <div class="label-row">
+                    <label class="field-label" for="password">Пароль *</label>
+                    <span class="counter" id="passwordCounter">0 / 32</span>
+                </div>
+                <input type="password" id="password" placeholder="Минимум 8 символов" maxlength="32">
+                <div class="strength-bar">
+                    <div class="strength-fill" id="strengthFill"></div>
+                </div>
+                <div class="strength-text" id="strengthText"></div>
+            </div>
+
+            <div class="field">
+                <label class="field-label" for="passwordConfirm">Повтор пароля *</label>
+                <input type="password" id="passwordConfirm" placeholder="Введите пароль ещё раз" maxlength="32">
+                <div class="match-hint" id="matchHint"></div>
+            </div>
+
+            <button type="submit">Зарегистрироваться</button>
+
+            <p id="message">Заполните все обязательные поля</p>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

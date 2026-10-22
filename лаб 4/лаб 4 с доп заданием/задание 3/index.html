@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+            padding: 30px 20px;
+            color: #333;
+        }
+        h1 { text-align: center; margin-top: 0; }
+
+        form {
+            max-width: 640px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px 35px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        fieldset {
+            border: 1px solid #e1e5eb;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+        }
+        legend {
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 0 8px;
+            font-size: 15px;
+        }
+
+        .field { margin-bottom: 14px; }
+        label.field-label {
+            display: block;
+            margin-bottom: 6px;
+            color: #444;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        label.field-label .req { color: #e74c3c; }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        /* ✅ Подсветка корректных и ошибочных значений */
+        input.valid,
+        select.valid,
+        textarea.valid {
+            border-color: #27ae60;
+            background: #f0f9f4;
+        }
+        input.invalid,
+        select.invalid,
+        textarea.invalid {
+            border-color: #e74c3c;
+            background: #fdecea;
+        }
+
+        /* ✅ Сообщения об ошибках рядом с полями */
+        .error-text {
+            display: none;
+            color: #e74c3c;
+            font-size: 12.5px;
+            margin-top: 5px;
+            line-height: 1.3;
+        }
+        .error-text.show { display: block; }
+        .error-text::before { content: '⚠ '; }
+
+        textarea { resize: vertical; min-height: 70px; }
+
+        .row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .row .field { flex: 1 1 180px; }
+
+        .checkbox-field {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #444;
+        }
+        .checkbox-field input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .checkbox-field label { cursor: pointer; }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button[type="submit"]:hover { background: #2c80b4; }
+
+        /* Общее сообщение о результате */
+        #summary {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            display: none;
+        }
+        #summary.error   { display: block; background: #f8d7da; color: #721c24; }
+        #summary.success { display: block; background: #d4edda; color: #155724; }
+    </style>
+</head>
+<body>
+    <h1>🛒 Оформление заказа</h1>
+
+    <form id="orderForm" novalidate>
+
+        <!-- КОНТАКТНЫЕ ДАННЫЕ -->
+        <fieldset>
+            <legend>Контактные данные</legend>
+
+            <div class="field">
+                <label class="field-label" for="fullName">ФИО <span class="req">*</span></label>
+                <input type="text" id="fullName" placeholder="Иванов Иван Иванович">
+                <div class="error-text" data-for="fullName"></div>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label class="field-label" for="email">E-mail <span class="req">*</span></label>
+                    <input type="email" id="email" placeholder="user@example.com">
+                    <div class="error-text" data-for="email"></div>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="phone">Телефон <span class="req">*</span></label>
+                    <input type="tel" id="phone" placeholder="+7 (___) ___-__-__">
+                    <div class="error-text" data-for="phone"></div>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- ДОСТАВКА -->
+        <fieldset>
+            <legend>Доставка</legend>
+
+            <div class="field">
+                <label class="field-label" for="city">Город <span class="req">*</span></label>
+                <input type="text" id="city" placeholder="Алматы">
+                <div class="error-text" data-for="city"></div>
+            </div>
+
+            <div class="field">
+                <label class="field-label" for="address">Адрес <span class="req">*</span></label>
+                <input type="text" id="address" placeholder="ул. Абая, д. 10, кв. 5">
+                <div class="error-text" data-for="address"></div>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label class="field-label" for="delivery">Способ доставки <span class="req">*</span></label>
+                    <select id="delivery">
+                        <option value="">Выберите</option>
+                        <option value="courier">Курьером</option>
+                        <option value="pickup">Самовывоз</option>
+                        <option value="post">Почтой</option>
+                    </select>
+                    <div class="error-text" data-for="delivery"></div>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="comment">Комментарий</label>
+                    <textarea id="comment" placeholder="Необязательно"></textarea>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- ОПЛАТА -->
+        <fieldset>
+            <legend>Оплата</legend>
+
+            <div class="field">
+                <label class="field-label" for="payment">Способ оплаты <span class="req">*</span></label>
+                <select id="payment">
+                    <option value="">Выберите</option>
+                    <option value="card">Банковская карта</option>
+                    <option value="cash">Наличными при получении</option>
+                    <option value="invoice">Счёт для юрлица</option>
+                </select>
+                <div class="error-text" data-for="payment"></div>
+            </div>
+
+            <div class="field" id="cardField" style="display:none;">
+                <label class="field-label" for="cardNumber">Номер карты <span class="req">*</span></label>
+                <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19">
+                <div class="error-text" data-for="cardNumber"></div>
+            </div>
+        </fieldset>
+
+        <!-- СОГЛАСИЯ -->
+        <fieldset>
+            <legend>Согласия</legend>
+
+            <div class="checkbox-field">
+                <input type="checkbox" id="agreeRules">
+                <label for="agreeRules">Я согласен с правилами магазина <span class="req">*</span></label>
+            </div>
+            <div class="error-text" data-for="agreeRules"></div>
+
+            <div class="checkbox-field">
+                <input type="checkbox" id="agreeData">
+                <label for="agreeData">Я согласен на обработку персональных данных <span class="req">*</span></label>
+            </div>
+            <div class="error-text" data-for="agreeData"></div>
+
+            <div class="checkbox-field">
+                <input type="checkbox" id="agreeNews">
+                <label for="agreeNews">Хочу получать новости и акции (необязательно)</label>
+            </div>
+        </fieldset>
+
+        <button type="submit">Оформить заказ</button>
+        <div id="summary"></div>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>

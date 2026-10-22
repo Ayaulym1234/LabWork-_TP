@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация студента</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 460px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+            font-size: 22px;
+        }
+        .field { margin-bottom: 16px; }
+        .label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+        label.field-label {
+            color: #444;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .counter {
+            font-size: 12px;
+            color: #888;
+            font-variant-numeric: tabular-nums;
+            transition: color 0.2s;
+        }
+        .counter.ok       { color: #27ae60; font-weight: bold; }
+        .counter.warning  { color: #f39c12; font-weight: bold; }
+        .counter.too-long { color: #e74c3c; font-weight: bold; }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        input.invalid, select.invalid {
+            border-color: #e74c3c;
+            background: #fdecea;
+        }
+        input.valid, select.valid {
+            border-color: #27ae60;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 18px 0;
+            font-size: 14px;
+            color: #444;
+        }
+        .checkbox-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: #5563c1; }
+
+        #message {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            min-height: 20px;
+            background: #eee;
+            color: #333;
+        }
+        #message.error   { background: #f8d7da; color: #721c24; }
+        #message.success { background: #d4edda; color: #155724; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Регистрация студента</h1>
+
+        <form id="studentForm" novalidate>
+
+            <div class="field">
+                <div class="label-row">
+                    <label class="field-label" for="fullName">ФИО *</label>
+                    <span class="counter" id="nameCounter">0 / 50</span>
+                </div>
+                <input type="text" id="fullName" placeholder="Иванов Иван Иванович" maxlength="50">
+            </div>
+
+            <div class="field">
+                <div class="label-row">
+                    <label class="field-label" for="email">E-mail *</label>
+                    <span class="counter" id="emailCounter">0 / 60</span>
+                </div>
+                <input type="email" id="email" placeholder="student@example.com" maxlength="60">
+            </div>
+
+            <div class="field">
+                <label class="field-label" for="course">Курс *</label>
+                <select id="course">
+                    <option value="">Выберите курс</option>
+                    <option value="1">1 курс</option>
+                    <option value="2">2 курс</option>
+                    <option value="3">3 курс</option>
+                    <option value="4">4 курс</option>
+                </select>
+            </div>
+
+            <label class="checkbox-row">
+                <input type="checkbox" id="agree">
+                Согласен с правилами *
+            </label>
+
+            <button type="submit">Зарегистрироваться</button>
+
+            <p id="message">Заполните все обязательные поля</p>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
