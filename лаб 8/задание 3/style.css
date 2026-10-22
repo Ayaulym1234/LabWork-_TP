@@ -1,0 +1,232 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #eef1f7;
+    margin: 0;
+    padding: 24px;
+    color: #2c3e50;
+}
+
+h1 {
+    text-align: center;
+    margin: 0 0 20px;
+}
+
+/* Панель инструментов */
+.toolbar {
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    background: white;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbar label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.toolbar select,
+.toolbar input[type="text"] {
+    padding: 8px 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.toolbar select:focus,
+.toolbar input[type="text"]:focus {
+    outline: none;
+    border-color: #4a63e7;
+}
+
+.toolbar button {
+    padding: 8px 14px;
+    background: #4a63e7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.toolbar button:hover {
+    background: #3849b8;
+}
+
+.toolbar button.danger {
+    background: #e74c3c;
+}
+
+.toolbar button.danger:hover {
+    background: #c0392b;
+}
+
+/* Доска */
+.board {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Колонки */
+.column {
+    background: #dfe4ee;
+    border-radius: 12px;
+    padding: 12px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s, outline 0.2s;
+}
+
+.column h2 {
+    font-size: 16px;
+    margin: 0 0 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+}
+
+.column[data-status="plan"] h2 {
+    background: #f39c12;
+}
+
+.column[data-status="doing"] h2 {
+    background: #3498db;
+}
+
+.column[data-status="done"] h2 {
+    background: #27ae60;
+}
+
+/* Подсветка колонки при перетаскивании */
+.column.drag-over {
+    background: #c9d3e8;
+    outline: 2px dashed #4a63e7;
+    outline-offset: -4px;
+}
+
+/* Контейнер карточек */
+.cards {
+    flex: 1;
+    min-height: 60px;
+}
+
+/* Карточка задачи */
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+.card.dragging {
+    opacity: 0.4;
+    transform: rotate(2deg);
+}
+
+.card .text {
+    flex: 1;
+    font-size: 15px;
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+/* Кнопка удаления карточки */
+.card .del {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    transition: color 0.15s, transform 0.15s;
+}
+
+.card .del:hover {
+    color: #c0392b;
+    transform: scale(1.2);
+}
+
+/* Заглушка пустой колонки */
+.empty-hint {
+    text-align: center;
+    color: #95a5a6;
+    font-size: 13px;
+    padding: 20px 0;
+    font-style: italic;
+}
+
+/* Всплывающее уведомление */
+#toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #2c3e50;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 800px) {
+    .board {
+        grid-template-columns: 1fr;
+    }
+
+    .column {
+        min-height: 250px;
+    }
+
+    .toolbar {
+        padding: 12px;
+    }
+
+    .toolbar input[type="text"] {
+        flex: 1;
+        min-width: 150px;
+    }
+}

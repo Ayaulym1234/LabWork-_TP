@@ -1,0 +1,124 @@
+* { box-sizing: border-box; }
+body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    margin: 0;
+    padding: 30px 20px;
+    color: #333;
+}
+.container {
+    max-width: 620px;
+    margin: 0 auto;
+    background: white;
+    padding: 28px 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+h1 { margin-top: 0; text-align: center; }
+
+.storage-switch {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #444;
+    flex-wrap: wrap;
+}
+.storage-switch label { cursor: pointer; }
+
+.add-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.add-row input[type="text"] { flex: 1; }
+.add-row input[type="number"] { width: 80px; }
+
+input[type="text"],
+input[type="number"] {
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+button {
+    padding: 10px 16px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+button:hover { background: #2c80b4; }
+button.danger { background: #e74c3c; }
+button.danger:hover { background: #c0392b; }
+
+.hint {
+    font-size: 13px;
+    color: #e74c3c;
+    min-height: 18px;
+    margin: 4px 0 12px;
+}
+
+#list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+}
+#list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    background: #f7f9fc;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+#list li .info { flex: 1; }
+#list li .qty {
+    color: #888;
+    font-size: 13px;
+    margin-left: 6px;
+}
+#list li button {
+    background: #e74c3c;
+    padding: 6px 10px;
+    font-size: 13px;
+}
+#list li button:hover { background: #c0392b; }
+
+.empty {
+    text-align: center;
+    color: #999;
+    padding: 20px 0;
+    font-size: 14px;
+}
+.empty.hidden { display: none; }
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+.import-label {
+    padding: 10px 16px;
+    background: #27ae60;
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.import-label:hover { background: #1e8449; }

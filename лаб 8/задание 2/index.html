@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 560px;
+        }
+        h1 { text-align: center; color: #333; margin-top: 0; }
+
+        .storage-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #f0f2ff;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .storage-row label { font-weight: bold; color: #555; }
+        .storage-row select {
+            padding: 8px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .storage-row select:focus { outline: none; border-color: #667eea; }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        #taskInput {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        #taskInput:focus { outline: none; border-color: #667eea; }
+
+        #addBtn {
+            padding: 12px 22px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #addBtn:hover { background: #5568d3; }
+
+        #taskList {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px;
+        }
+        #taskList li {
+            background: #f7f8fc;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #667eea;
+            transition: background 0.2s;
+        }
+        #taskList li:hover { background: #eef0fb; }
+        #taskList li.done {
+            background: #e8f5e9;
+            border-left-color: #27ae60;
+        }
+        #taskList li.done .task-text {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .task-text {
+            flex: 1;
+            cursor: pointer;
+            font-size: 16px;
+            user-select: none;
+        }
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .delete-btn:hover { background: #c0392b; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        #clearBtn {
+            padding: 10px 16px;
+            background: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #clearBtn:hover { background: #7f8c8d; }
+        #counter { color: #666; font-size: 14px; }
+
+        .io-row {
+            display: flex;
+            gap: 10px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+        }
+        .io-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #exportBtn { background: #27ae60; color: white; }
+        #exportBtn:hover { background: #1e8449; }
+        #importBtn { background: #3498db; color: white; }
+        #importBtn:hover { background: #2874a6; }
+
+        .empty {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> To-Do List</h1>
+
+        <div class="storage-row">
+            <label for="storageSelect">Хранилище:</label>
+            <select id="storageSelect">
+                <option value="localStorage">localStorage (постоянно)</option>
+                <option value="sessionStorage">sessionStorage (до закрытия вкладки)</option>
+            </select>
+        </div>
+
+        <div class="input-row">
+            <input type="text" id="taskInput" placeholder="Введите задачу...">
+            <button id="addBtn">Добавить</button>
+        </div>
+
+        <ul id="taskList"></ul>
+
+        <div class="footer">
+            <span id="counter">Задач: 0</span>
+            <button id="clearBtn">Очистить выполненные</button>
+        </div>
+
+        <div class="io-row">
+            <button class="io-btn" id="exportBtn"> Экспорт JSON</button>
+            <button class="io-btn" id="importBtn"> Импорт JSON</button>
+            <input type="file" id="fileInput" accept=".json" hidden>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

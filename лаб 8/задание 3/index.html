@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Канбан-доска</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1> Канбан-доска</h1>
+
+    <div class="toolbar">
+        <input type="text" id="newTask" placeholder="Новая задача...">
+        <button id="addBtn">Добавить</button>
+
+        <label for="storageMode">Хранилище:</label>
+        <select id="storageMode">
+            <option value="local">localStorage (постоянно)</option>
+            <option value="session">sessionStorage (до закрытия вкладки)</option>
+        </select>
+
+        <button id="exportBtn">⬇ Экспорт JSON</button>
+        <button id="importBtn">⬆ Импорт JSON</button>
+        <input type="file" id="importFile" accept=".json,application/json" hidden>
+
+        <button id="clearBtn" class="danger">Очистить всё</button>
+    </div>
+
+    <div class="board">
+        <div class="column" data-status="plan">
+            <h2>План</h2>
+            <div class="cards" id="cards-plan"></div>
+        </div>
+        <div class="column" data-status="doing">
+            <h2>В работе</h2>
+            <div class="cards" id="cards-doing"></div>
+        </div>
+        <div class="column" data-status="done">
+            <h2>Готово</h2>
+            <div class="cards" id="cards-done"></div>
+        </div>
+    </div>
+
+    <div id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

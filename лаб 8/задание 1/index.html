@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список покупок</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1> Список покупок</h1>
+
+        <!-- Переключатель режима хранения -->
+        <div class="storage-switch">
+            <label>
+                <input type="radio" name="storage" value="local" checked>
+                localStorage (постоянно)
+            </label>
+            <label>
+                <input type="radio" name="storage" value="session">
+                sessionStorage (до закрытия вкладки)
+            </label>
+        </div>
+
+        <!-- Форма добавления -->
+        <div class="add-row">
+            <input id="itemName" type="text" placeholder="Название товара">
+            <input id="itemQty" type="number" min="1" value="1" placeholder="Кол-во">
+            <button id="addBtn">Добавить</button>
+        </div>
+
+        <p id="hint" class="hint"></p>
+
+        <!-- Список покупок -->
+        <ul id="list"></ul>
+
+        <p id="empty" class="empty">Список пуст. Добавьте первый товар.</p>
+
+        <!-- Импорт / экспорт / очистка -->
+        <div class="actions">
+            <button id="exportBtn">Экспорт в JSON</button>
+            <label class="import-label">
+                Импорт из JSON
+                <input id="importFile" type="file" accept=".json,application/json" hidden>
+            </label>
+            <button id="clearBtn" class="danger"> Очистить всё</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
