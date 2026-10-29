@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск публикаций</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <h1>Публикации</h1>
+
+    <div class="controls">
+        <button id="load">Загрузить публикации</button>
+        <!-- Поле поиска (сначала скрыто) -->
+        <input type="text" id="search" placeholder="Поиск по заголовку..." hidden>
+    </div>
+
+    <p id="status" role="status">Нажмите «Загрузить публикации»</p>
+
+    <ul id="results"></ul>
+</body>
+</html>

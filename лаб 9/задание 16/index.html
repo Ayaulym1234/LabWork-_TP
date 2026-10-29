@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Дашборд задач</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <h1>Дашборд задач</h1>
+
+    <div class="controls">
+        <button id="load">Загрузить задачи</button>
+        
+        <!-- Фильтр по пользователю (скрыт до загрузки) -->
+        <select id="userFilter" hidden>
+            <option value="all">Все пользователи</option>
+            <!-- Опции добавятся через JS -->
+        </select>
+    </div>
+
+    <p id="status" role="status">Нажмите «Загрузить задачи»</p>
+
+    <!-- Блок статистики -->
+    <div id="stats" class="stats" hidden>
+        <div class="stat-box">
+            <span class="stat-label">Всего:</span>
+            <span id="totalCount" class="stat-value">0</span>
+        </div>
+        <div class="stat-box done">
+            <span class="stat-label">Выполнено:</span>
+            <span id="doneCount" class="stat-value">0</span>
+        </div>
+        <div class="stat-box pending">
+            <span class="stat-label">В процессе:</span>
+            <span id="pendingCount" class="stat-value">0</span>
+        </div>
+    </div>
+
+    <ul id="results"></ul>
+</body>
+</html>

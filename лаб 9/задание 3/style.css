@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 16px;
+}
+
+button {
+    padding: 8px 14px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+#status {
+    padding: 8px;
+    border-radius: 6px;
+    background: #eee;
+}
+
+/* Состояния статуса */
+#status.loading { background: #fff3cd; color: #856404; }
+#status.success { background: #d4edda; color: #155724; }
+#status.error   { background: #f8d7da; color: #721c24; }
+
+#results {
+    list-style: none;
+    padding: 0;
+}
+
+#results li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 6px 0;
+    background: #f4f4f9;
+    border-radius: 8px;
+    border-left: 6px solid #ccc;
+}
+
+/* Выполненная задача — зелёная и перечёркнутая */
+#results li.done {
+    background: #d4edda;
+    border-left-color: #28a745;
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+/* Избранная задача — со звездой и золотой рамкой */
+#results li.favorite {
+    border-left-color: gold;
+    background: #fffbea;
+}
+
+.star {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0 6px;
+}
