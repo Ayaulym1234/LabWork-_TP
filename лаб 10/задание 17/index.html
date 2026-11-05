@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронирование аудиторий</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Бронирование аудиторий</h1>
+
+    <div class="layout">
+        <!-- Форма бронирования -->
+        <div class="form-block">
+            <h2>Забронировать</h2>
+            <select id="room-select"></select>
+            
+            <label>Начало:</label>
+            <input id="start-time" type="time">
+            
+            <label>Конец:</label>
+            <input id="end-time" type="time">
+            
+            <button id="book-btn">Забронировать</button>
+            <p id="message" class="msg"></p>
+        </div>
+
+        <!-- Список броней -->
+        <div class="list-block">
+            <h2>Текущие брони</h2>
+            <ul id="bookings-list"></ul>
+            <button id="clear-btn">Очистить всё</button>
+        </div>
+    </div>
+
+    <!-- Подключаем main.js как модуль -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>

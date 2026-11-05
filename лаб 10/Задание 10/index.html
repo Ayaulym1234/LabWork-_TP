@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Журнал оценок (Модули)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>📚 Журнал оценок</h1>
+
+    <div class="layout">
+        <!-- Форма добавления -->
+        <div class="form-block">
+            <h2>Добавить студента</h2>
+            <input id="name-input" type="text" placeholder="Имя студента">
+            <input id="grade-input" type="number" placeholder="Оценка (1-5)">
+            <button id="add-btn">Добавить</button>
+            <p id="error-msg" class="error"></p>
+        </div>
+
+        <!-- Список студентов -->
+        <div class="list-block">
+            <h2>Успеваемость</h2>
+            <ul id="students-list"></ul>
+            <h3>Средний балл группы: <span id="class-average">0</span></h3>
+            <button id="clear-btn">Очистить журнал</button>
+        </div>
+    </div>
+
+    <!-- Подключаем главный модуль -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>

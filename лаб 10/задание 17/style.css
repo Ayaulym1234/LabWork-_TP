@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 16px;
+}
+.layout { display: flex; gap: 20px; }
+.form-block, .list-block { flex: 1; background: #f4f4f9; padding: 15px; border-radius: 8px; }
+select, input { display: block; width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; }
+button { padding: 8px 12px; cursor: pointer; background: #4a63e7; color: white; border: none; border-radius: 4px; }
+button:hover { background: #3849b8; }
+.msg { font-weight: bold; height: 20px; }
+.error { color: red; }
+.success { color: green; }
+ul { padding-left: 20px; }
+li { margin-bottom: 5px; }
