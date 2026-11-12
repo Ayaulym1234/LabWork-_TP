@@ -1,0 +1,70 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.app-container {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 600px;
+}
+
+h1 { text-align: center; color: #333; margin-top: 0; font-size: 24px; }
+
+.status-bar {
+  text-align: center;
+  background: #e3f2fd;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #1565c0;
+}
+
+/* Сетка для карточек (по 2 в ряд) */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Карточка аудитории */
+.room-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.3s;
+}
+
+/* Если аудитория забронирована */
+.room-card.booked {
+  border-color: #4caf50;
+  background: #f1f8e9;
+}
+
+.room-info h3 { margin: 0 0 10px 0; color: #333; }
+.room-info p { margin: 5px 0; font-size: 14px; color: #666; }
+
+/* Кнопки */
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.2s;
+}
+
+.btn-book { background: #4a63e7; color: white; }
+.btn-book:hover { background: #3849b8; }
+
+.btn-cancel { background: #f44336; color: white; }
+.btn-cancel:hover { background: #d32f2f; }
