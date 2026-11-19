@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление пользователями и журнал событий</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ЭКРАН ВХОДА -->
+    <div id="login-screen" class="card">
+        <h2>Вход в систему</h2>
+        <form id="loginForm">
+            <input id="login" type="text" placeholder="Логин" required>
+            <input id="password" type="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+        <p id="error-msg" class="error"></p>
+        
+        <div class="hints">
+            <p>Admin: <b>admin</b> / <b>admin123</b></p>
+            <p>User: <b>user</b> / <b>user123</b></p>
+        </div>
+    </div>
+
+    <!-- ГЛАВНЫЙ ЭКРАН (Личный кабинет) -->
+    <div id="main-screen" class="card" hidden>
+        <div class="header">
+            <h2>Личный кабинет</h2>
+            <button id="btn-logout" class="logout">Выйти</button>
+        </div>
+        
+        <p>Пользователь: <strong id="user-name"></strong></p>
+        <p>Ваша роль: <span id="user-role" class="badge"></span></p>
+
+        <!-- Защищенный раздел: Доступен только Администратору -->
+        <div id="admin-panel" class="protected-box" hidden>
+            <h3>Панель администратора</h3>
+            <p>Этот раздел защищен на уровне API. Только администраторы могут видеть его.</p>
+        </div>
+
+        <!-- Журнал событий -->
+        <div class="logs-box">
+            <h3>Журнал событий (Logs)</h3>
+            <ul id="log-list"></ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

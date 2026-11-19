@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Портал с ролями (Студент/Преподаватель)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ЭКРАН 1: ВХОД -->
+    <div id="login-screen" class="card">
+        <h2>Вход в учебный портал</h2>
+        <form id="loginForm">
+            <input id="login" type="text" placeholder="Логин" required>
+            <input id="password" type="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+        <p id="error-msg" class="error"></p>
+        
+        <div class="hints">
+            <p>Студент: <b>student</b> / <b>123</b></p>
+            <p>Преподаватель: <b>teacher</b> / <b>456</b></p>
+        </div>
+    </div>
+
+    <!-- ЭКРАН 2: КАБИНЕТ СТУДЕНТА -->
+    <div id="student-screen" class="card" hidden>
+        <h2>Личный кабинет студента</h2>
+        <p>Добро пожаловать, <strong id="student-name"></strong>!</p>
+        <div class="info-box">
+            <p>Средний балл: <b>4.8</b></p>
+            <p>Домашнее задание: <i>Лабораторная работа №12</i></p>
+        </div>
+        <button id="btn-logout-student" class="logout">Выйти</button>
+    </div>
+
+    <!-- ЭКРАН 3: КАБИНЕТ ПРЕПОДАВАТЕЛЯ -->
+    <div id="teacher-screen" class="card" hidden>
+        <h2>Панель преподавателя</h2>
+        <p>Добро пожаловать, <strong id="teacher-name"></strong>!</p>
+        <div class="info-box">
+            <p>Студентов в группе: <b>25</b></p>
+            <p>Работ на проверку: <b>3</b></p>
+        </div>
+        <button id="btn-logout-teacher" class="logout">Выйти</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

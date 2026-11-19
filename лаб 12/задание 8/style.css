@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #eef2f5;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 350px;
+}
+h2 { text-align: center; margin-top: 0; color: #333; font-size: 20px; }
+input {
+    width: 100%; padding: 10px; margin-bottom: 15px;
+    border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;
+}
+button {
+    width: 100%; padding: 10px; background: #007bff;
+    color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;
+}
+button:hover { background: #0056b3; }
+button.logout { background: #dc3545; margin-top: 20px; }
+button.logout:hover { background: #c82333; }
+
+.error { color: #dc3545; font-size: 14px; text-align: center; font-weight: bold; }
+.hints { margin-top: 20px; font-size: 13px; color: #666; text-align: center; background: #f9f9f9; padding: 10px; border-radius: 6px; }
+.hints p { margin: 5px 0; }
+.info-box { background: #e3f2fd; padding: 15px; border-radius: 6px; margin: 15px 0; }
+.info-box p { margin: 5px 0; }
